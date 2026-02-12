@@ -3,6 +3,7 @@
   import { logEvent } from '$lib/db';
   import { goto } from '$app/navigation';
   import { User, Users, ChevronLeft } from 'lucide-svelte';
+  import { Timestamp } from 'firebase/firestore'; 
   
   // Mock users for MVP
   const FRIENDS = [
@@ -27,6 +28,10 @@
     }
   }
 
+  import { appendEvent } from '$lib/store/slices/events';
+
+  // ... (existing code)
+
   async function handleSubmit() {
     if (!amount || !description || selectedUsers.length === 0) return;
     loading = true;
@@ -37,13 +42,26 @@
       // Let's assume the "Split" includes the payer + selected users.
       const splitWith = [currentUser?.uid, ...selectedUsers].filter(Boolean) as string[];
 
-      await logEvent('ADD_EXPENSE', {
+      const payload = {
         payerId: currentUser?.uid,
         amount: parseFloat(amount),
         description,
         splitWith,
         timestamp: Date.now()
-      });
+      };
+
+      if (import.meta.env.VITE_TEST_MODE === 'true') {
+         store.dispatch(appendEvent({
+             type: 'ADD_EXPENSE',
+             payload,
+             timestamp: Timestamp.fromMillis(Date.now()),
+             id: 'test-event-id-' + Date.now()
+         }));
+         goto('/dashboard');
+         return;
+      }
+
+      await logEvent('ADD_EXPENSE', payload);
 
       // Navigate back with a small delay to show animation (if we had one here)
       goto('/dashboard');

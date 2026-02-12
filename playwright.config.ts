@@ -48,6 +48,9 @@ export default defineConfig({
         command: 'npm run dev',
         url: 'http://localhost:5173',
         reuseExistingServer: !process.env.CI,
+        env: {
+            VITE_TEST_MODE: 'true'
+        }
     },
     timeout: 60000, // Increase failure timeout for CI
     expect: {
