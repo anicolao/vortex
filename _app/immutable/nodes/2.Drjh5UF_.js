@@ -1,0 +1,1 @@
+import{a,f as e}from"../chunks/wBM0uiUP.js";import"../chunks/BQemW0Pi.js";import{n as r}from"../chunks/29dLXa34.js";var m=e("<h1>Welcome to The Vortex</h1> <p>Split bills, lend money, track balances.</p>",1);function f(o){var t=m();r(2),a(o,t)}export{f as component};
