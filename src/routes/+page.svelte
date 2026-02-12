@@ -1,2 +1,5 @@
-<h1>Welcome to The Vortex</h1>
-<p>Split bills, lend money, track balances.</p>
+<script>
+  // Layout handles redirection
+</script>
+
+<h1>Loading...</h1>

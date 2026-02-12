@@ -26,6 +26,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.0",
     "firebase": "^10.7.0",
+    "lucide-svelte": "^0.563.0",
     "redux": "^5.0.0"
   }
 }
