@@ -2,6 +2,12 @@ food/
 node_modules/
 .DS_Store
 .env
+.env.*
+!.env.example
 .svelte-kit
 build/
 .agent/
+tests/e2e/*/screenshots/
+tests/e2e/*/image_snapshots/
+playwright-report/
+test-results/
