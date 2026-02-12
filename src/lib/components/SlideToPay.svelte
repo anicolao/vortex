@@ -61,6 +61,10 @@
     style="transform: translateX({currentX}px)"
     on:mousedown={handleStart}
     on:touchstart={handleStart}
+    role="slider"
+    aria-label="Slide to confirm payment"
+    aria-valuenow={currentX}
+    tabindex="0"
   >
     <ChevronRight color={completed ? "#10b981" : "#a855f7"} />
   </div>
