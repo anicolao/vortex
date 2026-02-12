@@ -20,5 +20,17 @@ export const store = configureStore({
         }),
 });
 
+// Svelte Store Wrapper
+export const svelteStore = {
+    subscribe: (run: (value: RootState) => void) => {
+        run(store.getState()); // Initial call
+        return store.subscribe(() => {
+            run(store.getState());
+        });
+    },
+    dispatch: store.dispatch, // Expose dispatch directly
+    getState: store.getState // Expose getState directly
+};
+
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

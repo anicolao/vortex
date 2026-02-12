@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { store } from '$lib/store';
+  import { svelteStore as store } from '$lib/store';
   import { selectBalances, selectMyNetBalance } from '$lib/store/selectors';
   import { logEvent } from '$lib/db';
   import { goto } from '$app/navigation';
@@ -18,7 +18,7 @@
     'david': 'David'
   };
 
-  store.subscribe((s) => {
+  store.subscribe((s: any) => {
     state = s;
     balances = selectBalances(s);
     myNet = selectMyNetBalance(s);

@@ -2,7 +2,7 @@
   import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
   import { goto } from '$app/navigation';
   import { app } from '$lib/firebase';
-  import { Vortex } from 'lucide-svelte';
+  import { Tornado } from 'lucide-svelte';
 
   async function signIn() {
     try {
@@ -18,7 +18,7 @@
 
 <div class="login-container">
   <div class="vortex-icon">
-    <Vortex size={80} color="var(--color-primary)" />
+    <Tornado size={80} color="var(--color-primary)" />
   </div>
   <h1>The Vortex</h1>
   <p>Enter the flow. Split costs. Stay balanced.</p>

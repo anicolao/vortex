@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { store } from '$lib/store';
+  import { svelteStore as store } from '$lib/store';
   import { logEvent } from '$lib/db';
   import { goto } from '$app/navigation';
   import { User, Users, ChevronLeft } from 'lucide-svelte';
@@ -72,7 +72,6 @@
         type="number" 
         bind:value={amount} 
         placeholder="0.00" 
-        autofocus 
         class="amount-input"
       />
     </div>

@@ -3,7 +3,7 @@
   import { onMount } from 'svelte';
   import { getAuth, onAuthStateChanged } from "firebase/auth";
   import { app } from '$lib/firebase';
-  import { store } from '$lib/store';
+  import { svelteStore as store } from '$lib/store';
   import { setUser } from '$lib/store/slices/auth';
   import { setEvents } from '$lib/store/slices/events';
   import { subscribeToEvents } from '$lib/db';

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { store } from '$lib/store';
+  import { svelteStore as store } from '$lib/store';
   import { selectMyNetBalance, selectRecentActivity } from '$lib/store/selectors';
   import VortexEffect from '$lib/components/VortexEffect.svelte';
   import { Plus } from 'lucide-svelte';
