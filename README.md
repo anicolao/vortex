@@ -8,7 +8,7 @@ The Vortex is a cost-sharing app designed to make it easy for people to split bi
 ## Features (Planned)
 - 💸 **Split Bills**: Easily divide restaurant checks or shared expenses.
 - 🤝 **Lend/Borrow**: Track casual loans between friends.
-- 📊 **Balance Tracking**: Real-time view of who owes who.
+- 📊 **Balance Tracking**: Track whether you owe money or are owed money by the group (The Vortex). Payments can be made to anyone to adjust the global balance.
 - ☁️ **Cloud Sync**: Data persisted via Firestore.
 - 📱 **Mobile Friendly**: Designed for use on the go.
 
