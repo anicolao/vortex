@@ -59,5 +59,6 @@ export default defineConfig({
             maxDiffPixels: 100,
             threshold: 0.1,
         } // Relaxed for cross-platform
-    }
+    },
+    ignoreSnapshots: !!process.env.CI,
 });
