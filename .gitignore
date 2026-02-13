@@ -7,7 +7,5 @@ node_modules/
 .svelte-kit
 build/
 .agent/
-tests/e2e/*/screenshots/
-tests/e2e/*/image_snapshots/
 playwright-report/
 test-results/
