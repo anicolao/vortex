@@ -56,8 +56,8 @@ export default defineConfig({
     expect: {
         timeout: 5000, // Shorten assertion timeout
         toHaveScreenshot: {
-            maxDiffPixels: 0,
-            threshold: 0,
-        } // Zero tolerance
+            maxDiffPixels: 100,
+            threshold: 0.1,
+        } // Relaxed for cross-platform
     }
 });
