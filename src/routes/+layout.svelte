@@ -43,6 +43,11 @@
         }
 
       } else {
+        // In test mode, we manage auth manually via Dev Login, so ignore Firebase's null state
+        if (import.meta.env.VITE_TEST_MODE === 'true') {
+            return;
+        }
+
         store.dispatch(setUser(null));
         if ($page.url.pathname !== '/login' && $page.url.pathname !== '/') {
             goto('/login');
