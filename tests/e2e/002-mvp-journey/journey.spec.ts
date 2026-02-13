@@ -32,7 +32,7 @@ test.describe('MVP User Journey', () => {
                         check: async () => expect(page.locator('.fab')).toBeVisible()
                     }
                 ],
-                mask: [page.locator('canvas')]
+                // mask: [page.locator('canvas')] // Removed strict requirement
             });
 
             // 3. Add Expense

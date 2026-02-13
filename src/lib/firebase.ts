@@ -1,5 +1,5 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { type FirebaseApp, initializeApp } from "firebase/app";
+import { type Firestore, getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -10,5 +10,14 @@ const firebaseConfig = {
     appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
-export const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+let app: FirebaseApp | undefined;
+let db: Firestore | undefined;
+
+try {
+    app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+} catch (e) {
+    console.error("Firebase initialization failed:", e);
+}
+
+export { app, db };

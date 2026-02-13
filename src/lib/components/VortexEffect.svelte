@@ -49,6 +49,20 @@
 
     function animate() {
       if (!ctx) return;
+      
+      // TEST MODE: Deterministic Rendering
+      if (import.meta.env.VITE_TEST_MODE === 'true') {
+          ctx.fillStyle = '#000000';
+          ctx.fillRect(0, 0, width, height);
+          
+          // Draw a single static circle to represent the vortex
+          ctx.beginPath();
+          ctx.arc(width / 2, height / 2, 50, 0, Math.PI * 2);
+          ctx.fillStyle = '#663399'; // RebeccaPurple
+          ctx.fill();
+          return; // Stop animation loop
+      }
+
       animationId = requestAnimationFrame(animate);
       ctx.fillStyle = 'rgba(5, 5, 5, 0.1)'; // Trail effect
       ctx.fillRect(0, 0, width, height);

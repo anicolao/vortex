@@ -37,3 +37,22 @@
 
 ---
 
+## Dashboard shows new balance
+
+![Dashboard shows new balance](./screenshots/004-05-dashboard-updated.png)
+
+**Verifications:**
+- [x] Recent activity shows Dinner
+- [x] Balance is +$50.00
+
+---
+
+## Settle Up Screen
+
+![Settle Up Screen](./screenshots/005-06-settle-screen.png)
+
+**Verifications:**
+- [x] Shows I am owed money
+
+---
+

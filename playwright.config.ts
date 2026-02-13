@@ -56,9 +56,9 @@ export default defineConfig({
     expect: {
         timeout: 5000, // Shorten assertion timeout
         toHaveScreenshot: {
-            maxDiffPixels: 100,
-            threshold: 0.1,
-        } // Relaxed for cross-platform
+            maxDiffPixels: 0,
+            threshold: 0,
+        } // Zero tolerance
     },
-    ignoreSnapshots: !!process.env.CI,
+    // ignoreSnapshots: !!process.env.CI, // Enforce validation in CI
 });

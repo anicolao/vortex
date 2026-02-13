@@ -5,6 +5,7 @@
   import { Tornado } from 'lucide-svelte';
 
   async function signIn() {
+    if (!app) return;
     try {
       const auth = getAuth(app);
       const provider = new GoogleAuthProvider();

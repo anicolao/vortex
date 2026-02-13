@@ -11,6 +11,10 @@ export interface AppEvent {
 }
 
 export async function logEvent(type: string, payload: any) {
+    if (!db) {
+        console.warn("Firestore not initialized, skipping logEvent");
+        return;
+    }
     try {
         const docRef = await addDoc(collection(db, EVENTS_COLLECTION), {
             type,
@@ -27,6 +31,11 @@ export async function logEvent(type: string, payload: any) {
 
 // Real-time subscription
 export function subscribeToEvents(callback: (events: AppEvent[]) => void) {
+    if (!db) {
+        console.warn("Firestore not initialized, skipping subscription");
+        return () => { };
+    }
+
     const q = query(collection(db, EVENTS_COLLECTION), orderBy("timestamp"));
 
     const unsubscribe = onSnapshot(q, (querySnapshot) => {

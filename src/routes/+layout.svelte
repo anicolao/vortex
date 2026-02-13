@@ -13,6 +13,7 @@
   let { children } = $props();
 
   onMount(() => {
+    if (!app) return;
     const auth = getAuth(app);
     
     // Auth Listener
