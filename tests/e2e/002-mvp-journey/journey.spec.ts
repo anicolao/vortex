@@ -37,6 +37,7 @@ test.describe('MVP User Journey', () => {
 
             // 3. Add Expense
             await page.click('.fab');
+            await page.waitForURL(/.*expense\/new\/?/);
             await helper.step('03-expense-form', {
                 description: 'Open Add Expense Form',
                 verifications: [
