@@ -1,15 +1,20 @@
 import { db } from './firebase';
-import { collection, addDoc, getDocs, query, orderBy, Timestamp } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, query, orderBy, Timestamp } from "firebase/firestore";
 
 const EVENTS_COLLECTION = "events";
 
 export interface AppEvent {
     type: string;
     payload: any;
-    timestamp: Timestamp;
+    timestamp: Timestamp; // Firestore Timestamp
+    id?: string;
 }
 
 export async function logEvent(type: string, payload: any) {
+    if (!db) {
+        console.warn("Firestore not initialized, skipping logEvent");
+        return;
+    }
     try {
         const docRef = await addDoc(collection(db, EVENTS_COLLECTION), {
             type,
@@ -24,12 +29,24 @@ export async function logEvent(type: string, payload: any) {
     }
 }
 
-export async function getAllEvents() {
+// Real-time subscription
+export function subscribeToEvents(callback: (events: AppEvent[]) => void) {
+    if (!db) {
+        console.warn("Firestore not initialized, skipping subscription");
+        return () => { };
+    }
+
     const q = query(collection(db, EVENTS_COLLECTION), orderBy("timestamp"));
-    const querySnapshot = await getDocs(q);
-    const events: AppEvent[] = [];
-    querySnapshot.forEach((doc) => {
-        events.push(doc.data() as AppEvent);
+
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const events: AppEvent[] = [];
+        querySnapshot.forEach((doc) => {
+            events.push({ id: doc.id, ...doc.data() } as AppEvent);
+        });
+        callback(events);
+    }, (error) => {
+        console.error("Error subscribing to events: ", error);
     });
-    return events;
+
+    return unsubscribe;
 }

@@ -45,9 +45,12 @@ export default defineConfig({
         },
     ],
     webServer: {
-        command: 'npm run dev',
+        command: process.env.CI ? 'npm run build && npm run preview -- --port 5173' : 'npm run dev',
         url: 'http://localhost:5173',
         reuseExistingServer: !process.env.CI,
+        env: {
+            VITE_TEST_MODE: 'true'
+        }
     },
     timeout: 60000, // Increase failure timeout for CI
     expect: {
@@ -56,5 +59,6 @@ export default defineConfig({
             maxDiffPixels: 0,
             threshold: 0,
         } // Zero tolerance
-    }
+    },
+    // ignoreSnapshots: !!process.env.CI, // Enforce validation in CI
 });
