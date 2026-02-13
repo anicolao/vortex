@@ -4,6 +4,7 @@
   import VortexEffect from '$lib/components/VortexEffect.svelte';
   import { Plus } from 'lucide-svelte';
   import { goto } from '$app/navigation';
+  import { base } from '$app/paths';
   import { onMount } from 'svelte';
 
   // Using Svelte 5 runes if possible, but store is reactive via $store for now 
@@ -22,7 +23,7 @@
   });
 
   function goToAddExpense() {
-    goto('/expense/new');
+    goto(`${base}/expense/new`);
   }
 
   function formatMoney(amount: number) {

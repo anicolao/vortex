@@ -1,6 +1,7 @@
 <script lang="ts">
   import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
   import { goto } from '$app/navigation';
+  import { base } from '$app/paths';
   import { app } from '$lib/firebase';
   import { Tornado } from 'lucide-svelte';
 
@@ -10,7 +11,7 @@
       const auth = getAuth(app);
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
-      goto('/dashboard');
+      goto(`${base}/dashboard`);
     } catch (error) {
       console.error("Error signing in", error);
     }
@@ -27,7 +28,7 @@
       email: 'test@example.com',
       photoURL: null
     }));
-    goto('/dashboard');
+    goto(`${base}/dashboard`);
   }
 </script>
 

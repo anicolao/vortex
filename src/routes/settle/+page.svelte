@@ -3,6 +3,7 @@
   import { selectBalances, selectMyNetBalance } from '$lib/store/selectors';
   import { logEvent } from '$lib/db';
   import { goto } from '$app/navigation';
+  import { base } from '$app/paths';
   import { ChevronLeft } from 'lucide-svelte';
   import SlideToPay from '$lib/components/SlideToPay.svelte';
 
@@ -56,7 +57,7 @@
       });
       
       setTimeout(() => {
-        goto('/dashboard');
+        goto(`${base}/dashboard`);
       }, 1000);
     } catch (e) {
       console.error(e);
@@ -64,7 +65,7 @@
   }
 
   function goBack() {
-    goto('/dashboard');
+    goto(`${base}/dashboard`);
   }
 
   function formatMoney(amount: number) {

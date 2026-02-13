@@ -1,11 +1,12 @@
 <script>
   import { goto } from '$app/navigation';
+  import { base } from '$app/paths';
 </script>
 
 <div class="landing">
   <h1>Welcome to The Vortex</h1>
   <p>Share expenses simply.</p>
-  <button on:click={() => goto('/login')}>Enter The Vortex</button>
+  <button on:click={() => goto(`${base}/login`)}>Enter The Vortex</button>
 </div>
 
 <style>

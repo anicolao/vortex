@@ -8,6 +8,7 @@
   import { setEvents } from '$lib/store/slices/events';
   import { subscribeToEvents } from '$lib/db';
   import { goto } from '$app/navigation';
+  import { base } from '$app/paths';
   import { page } from '$app/stores';
 
   let { children } = $props();
@@ -35,8 +36,10 @@
         });
 
         // If we are on login page, go to dashboard
-        if ($page.url.pathname === '/login' || $page.url.pathname === '/') {
-           goto('/dashboard');
+        // Use route.id to be base-path agnostic when checking current page
+        const currentRoute = $page.route.id;
+        if (currentRoute === '/login' || currentRoute === '/') {
+           goto(`${base}/dashboard`);
         }
 
         return () => {
@@ -50,8 +53,10 @@
         }
 
         store.dispatch(setUser(null));
-        if ($page.url.pathname !== '/login' && $page.url.pathname !== '/') {
-            goto('/login');
+        const currentRoute = $page.route.id;
+        // Redirect to login if not already there (and not at root)
+        if (currentRoute !== '/login' && currentRoute !== '/') {
+            goto(`${base}/login`);
         }
       }
     });

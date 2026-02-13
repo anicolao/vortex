@@ -2,6 +2,7 @@
   import { svelteStore as store } from '$lib/store';
   import { logEvent } from '$lib/db';
   import { goto } from '$app/navigation';
+  import { base } from '$app/paths';
   import { User, Users, ChevronLeft } from 'lucide-svelte';
   import { Timestamp } from 'firebase/firestore'; 
   
@@ -57,14 +58,14 @@
              timestamp: Timestamp.fromMillis(Date.now()),
              id: 'test-event-id-' + Date.now()
          }));
-         goto('/dashboard');
+         goto(`${base}/dashboard`);
          return;
       }
 
       await logEvent('ADD_EXPENSE', payload);
 
       // Navigate back with a small delay to show animation (if we had one here)
-      goto('/dashboard');
+      goto(`${base}/dashboard`);
     } catch (e) {
       console.error(e);
       loading = false;
@@ -72,7 +73,7 @@
   }
 
   function goBack() {
-    goto('/dashboard');
+    goto(`${base}/dashboard`);
   }
 </script>
 
